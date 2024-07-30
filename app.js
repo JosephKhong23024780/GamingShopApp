@@ -24,7 +24,7 @@ const connection = mysql.createConnection({
     host: 'db4free.net',
     user: 'aarvalan',
     password: 'aarvalan69',
-    database: 'c237gaminitem'
+    database: 'c237gamingitem'
 });
 
 const getItemFromDatabase = (itemId, callback) => {
