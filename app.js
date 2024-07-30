@@ -17,10 +17,14 @@ const upload = multer({ storage: storage });
 
 // Create MySQL connection
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'c237_gamingitemapp'
+    // host: 'localhost',
+    // user: 'root',
+    // password: '',
+    // database: 'c237_gamingitemapp'
+    host: 'db4free.net',
+    user: 'aarvalan',
+    password: 'aarvalan69',
+    database: 'c237gaminitem'
 });
 
 const getItemFromDatabase = (itemId, callback) => {
