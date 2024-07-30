@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Gaming Shop App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <% if (login[0].login_status === 1) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addItem">Add Item</a>
+                    </li>  
+                <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact Us</a>
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutUs">About Us</a>
+                </li>  
+                <li class="nav-item">
+                    <form class="d-flex" style="position: absolute; right: 560px;" action="/pricerange" method="GET">
+                        <input class="form-control me-2" type="search" name="min" placeholder="Min Price Range" aria-label="Search">
+                        <input class="form-control me-2" type="search" name="max" placeholder="Max Price Range" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item" style="position: absolute; right: 260px;">
+                    <form class="d-flex ms-auto" action="/search" method="GET">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search for Gaming Items" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item" style="position: absolute; right: 175px; background-color: lightblue; width: 75px;">
+                    <a class="nav-link" href="/cart" style="color:black; text-align: center;">Cart</a>
+                </li>
+                <li class="nav-item" style="position: absolute; right: 50px; background-color: blue; width: 100px;">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        Login/Logout
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/login" style="color:black; text-align: center;">Sign in</a></li>
+                            <li><a class="dropdown-item" href="/logout" style="color:black; text-align: center;">Sign Out</a></li>
+                            <li><a class="dropdown-item" href="/register" style="color:black; text-align: center;">Register</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

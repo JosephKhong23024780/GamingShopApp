@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <title>Gaming Shop App</title>
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <% if (login[0].login_status === 1) { %>
+        <!-- Main Content -->
+        <div class="container">
+            <br>
+            <div class="text-center">
+                <h2>Shopping Cart</h2>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Delete</th>
+                            <th>Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (items.length > 0) { %>
+                            <% items.forEach(item => { %>
+                                <tr>
+                                    <td><%= item.name %></td>
+                                    <td>
+                                        <form action="/updateCart/<%= item.cartId %>" method="POST">
+                                            <input type="number" name="quantity" value="<%= item.quantity %>" min="1">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="/deleteCart/<%= item.cartId %>" method="POST">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                    <td>$<%= item.price %></td>
+                                    <td>$<%= item.price * item.quantity %></td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">Your cart is empty.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-end">
+                <h3>Total: $<%= total %></h3>
+                <a href="/checkout" class="btn btn-success">Proceed to Checkout</a>
+            </div>
+        </div>
+    <% } else { %>
+        <!-- Access Denied -->
+        <div class="container">
+            <br>
+            <div class="text-center">
+                <h2>Access Denied</h2>
+            </div>
+            <br>
+            <div class="text-center">
+                <h3>You must be logged in to view your cart.</h3>
+                <a href="/login" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    <% } %>
+</body>
+</html>
